@@ -42,6 +42,7 @@ function getToDos(){
     })
     .then((respone)=>{
         renderToDosToTable(respone);
+        console.log('in ajax then',respone);
     })
     .catch((err)=>{
         console.log('in client GET catch',err);
