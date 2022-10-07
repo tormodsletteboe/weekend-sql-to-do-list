@@ -2,16 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 //DB CONNECTION
-const pool = require('../public/modules/pool');
+const pool = require('../modules/pool');
 
 //get
 router.get('/',(req,res)=>{
-    pool.query()
+    console.log('in router GET');
+    let sqlText = 'SELECT * FROM "todos";';
+    pool.query(sqlText)
     .then((dbRes)=>{
-        res.send(dbRes);
+        console.log('in router GET then');
+        res.send(dbRes.rows);
     })
     .catch((err)=>{
-        console.log('in pool GET catch',err);
+        console.log('in router GET catch',err);
         res.sendStatus(500);
     })
 });
