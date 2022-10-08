@@ -105,7 +105,7 @@ function renderToDosToTable(todosFromTable){
     //look through recently created tr and see if they are checked, if they are not checked ie not completed, add a fire effect.
     for(let todo of todosFromTable){
         if($('#tr'+todo.id).data('checked')){
-           //do nothing
+           $('#tr'+todo.id).addClass("completed");
         }
         else{
             //not completed add a fire effect

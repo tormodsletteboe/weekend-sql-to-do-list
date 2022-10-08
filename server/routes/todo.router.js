@@ -10,7 +10,7 @@ const pool = require('../modules/pool');
 //get
 router.get('/',(req,res)=>{
     console.log('in router GET');
-    let sqlText = 'SELECT * FROM "todos" ORDER BY "id" ;';
+    let sqlText = 'SELECT * FROM "todos" ORDER BY "completed" ;';
     pool.query(sqlText)
     .then((dbRes)=>{
         console.log('in router GET then');

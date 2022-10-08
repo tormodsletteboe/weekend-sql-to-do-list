@@ -15,6 +15,10 @@ section{
     justify-content: center;
     
 }
+.completed{
+    color:gray;
+    text-decoration: line-through;
+}
 button{
     margin: 5px;
 }
