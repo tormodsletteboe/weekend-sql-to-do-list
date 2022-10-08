@@ -13,6 +13,7 @@ function onReady(){
 
     //register events listeners
     $('#createBtn').on('click',createToDos);
+    $('#viewToDo').on('click','.checkboxToDo',changeTheCheckbox)
 
     //grab DB data
     getToDos();
@@ -90,7 +91,7 @@ function renderToDosToTable(todosFromTable){
             <td>${todo.description}</td>
             <td>${todo.date_created}</td>
             <td class="cb">
-               <input type="checkbox">
+               ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
             <td>
                 <button>X</button>
@@ -100,4 +101,36 @@ function renderToDosToTable(todosFromTable){
     }
     
 
+}
+//getCheckboxWithOrWithOutCheckMark
+//returns a string with a checkbox checked or a checkbox not checked
+function getCheckboxWithOrWithOutCheckMark(checked,id)
+{
+    if(checked){
+        return `<input class = "checkboxToDo" type ="checkbox" data-id=${id} checked>`;
+    }
+    return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
+}
+//changeTheCheckbox
+//checkbox has changed value update it
+function changeTheCheckbox(){
+    
+    $.ajax({
+        url: `todo/${$(this).data('id')}`,
+        method:'PUT'
+    })
+    .then((response)=>{
+        getToDos();
+    })
+    .catch((err)=>{
+        console.log('in ajax PUT catch',err);
+    })
+
+    // let checkval = false;
+    // if ($(this).is(":checked"){
+    //     checkval=true;
+    // }
+    // else{
+    //     checkval
+    // }
 }

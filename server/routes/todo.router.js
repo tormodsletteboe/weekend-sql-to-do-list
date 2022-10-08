@@ -10,7 +10,7 @@ const pool = require('../modules/pool');
 //get
 router.get('/',(req,res)=>{
     console.log('in router GET');
-    let sqlText = 'SELECT * FROM "todos";';
+    let sqlText = 'SELECT * FROM "todos" ORDER BY "id" ;';
     pool.query(sqlText)
     .then((dbRes)=>{
         console.log('in router GET then');
@@ -43,6 +43,20 @@ router.post('/',(req,res)=>{
 });
 
 //put
+router.put('/:index',(req,res)=>{
+    let sqlText = `UPDATE "todos"
+                    SET "completed" = NOT "completed"
+                    WHERE "id" = $1;`;
+    pool.query(sqlText,[req.params.index])
+        .then((dbRes)=>{
+            res.sendStatus(200);
+        })
+        .catch((err)=>{
+            console.log('in router PUT catch',err);
+            res.sendStatus(500);
+        })
+});
+
 //delete
 
 module.exports = router;
