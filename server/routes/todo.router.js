@@ -26,9 +26,9 @@ router.post('/',(req,res)=>{
     console.log('in router POST');
 
     let sqlText = `INSERT INTO "todos"
-    ("task_name","description","date_created")
+    ("task_name","description","date_created","completed")
     VALUES
-    ($1,$2,LOCALTIMESTAMP);`;
+    ($1,$2,LOCALTIMESTAMP,FALSE);`;
 
     
     pool.query(sqlText,[req.body.task,req.body.description])
