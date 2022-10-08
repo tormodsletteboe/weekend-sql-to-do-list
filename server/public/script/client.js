@@ -62,6 +62,20 @@ function createToDos(){
     //console.log('ran function: ',arguments.callee.name);
     let taskIn = $('#taskNameInput').val();
     let descr = $('#descriptionInput').val();
+    //if missing input, shake the box, wait 500ms and remove the shake class, then return to DOM
+    if(taskIn===''){
+        $('#taskNameInput').addClass('error');
+        setTimeout(()=>{$('#taskNameInput').removeClass('error');},500);
+        return;
+        
+    }
+     //if missing input, shake the box, wait 500ms and remove the shake class, then return to DOM
+    if(descr===''){
+        $('#descriptionInput').addClass('error');
+        setTimeout(()=>{$('#descriptionInput').removeClass('error');},500);
+        return;
+    }
+    //create the obj to POST
     let newToDo = {
         task: taskIn,
         description: descr,
@@ -148,9 +162,11 @@ function onCheckBoxChange(){
 
 //DELETE
 //onDeleteBtn
-//remove the row of this task from the table as well as from the DB
+//remove the row of this task from the table as well as from the DB, but only if user OKs the sweetalert modal
 function onDeleteBtn(){
     //console.log('ran function: ',arguments.callee.name);
+
+    //ask the user if they are sure and only delete if they are
     swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this task!",
@@ -169,6 +185,9 @@ function onDeleteBtn(){
    
     
 }
+
+//doDeletion
+//send the delete request to the server
 function doDeletion(thisguy){
     let idOfTodo = thisguy.data('id');
     // console.log('delete: ',idOfTodo);
