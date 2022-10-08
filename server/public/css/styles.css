@@ -38,10 +38,12 @@ table{
 }
 .cb{
     text-align: center;
+
 }
 body{
     background-color: red; /* For browsers that do not support gradients */
     background-image: linear-gradient(to right,powderblue , green);
+    padding: 50px;
 }
 
 .waviy {
@@ -75,4 +77,11 @@ body{
   }
   label{
     color: white;
+  }
+  .deleteBtn{
+    color:red;
+  }
+  th{
+    text-align: center;
+    font-weight: bolder;
   }

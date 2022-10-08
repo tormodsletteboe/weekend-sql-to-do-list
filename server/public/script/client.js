@@ -89,15 +89,15 @@ function renderToDosToTable(todosFromTable){
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
-        <tr id="tr${todo.id}" data-checked="${todo.completed}">
-            <td>${todo.task_name}</td>
-            <td>${todo.description}</td>
-            <td>${todo.date_created}</td>
-            <td class="cb">
+        <tr id="tr${todo.id}" data-checked="${todo.completed}" class="shadow-lg p-3 mb-5 rounded">
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.task_name}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.description}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.date_created}</td>
+            <td class="shadow-lg p-3 mb-5 rounded cb">
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
-            <td class="cb">
-                <button class="deleteBtn" data-id="${todo.id}">X</button>
+            <td class="shadow-lg p-3 mb-5 rounded cb">
+                <button class="deleteBtn btn btn-light" data-id="${todo.id}">X</button>
             </td>
         </tr>
     `);
@@ -123,9 +123,9 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
 {
     if(checked){
         
-        return `<input class = "checkboxToDo" type ="checkbox" data-id=${id} checked>`;
+        return `<label class="btn align-middle"><input class = "checkboxToDo" type ="checkbox" data-id=${id} checked></label>`;
     }
-    return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
+    return `<label class="btn align-middle"><input class = "checkboxToDo" type ="checkbox" data-id=${id}></label>`;
 }
 
 //PUT
