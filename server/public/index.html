@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <script src="vendors/jquery.js"></script>
+    <script src="script/client.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap">
+    
+    <title>ToDo:Now!!</title>
+</head>
+<body>
+    <div class="waviy">
+        <span style="--i:1">T</span>
+        <span style="--i:2">O</span>
+        <span style="--i:3">D</span>
+        <span style="--i:4">O</span>
+        <span style="--i:5">:</span>
+        <span style="--i:6">N</span>
+        <span style="--i:7">O</span>
+        <span style="--i:8">W</span>
+        <span style="--i:9">!</span>
+        <span style="--i:10">!</span>
+     
+    </div>
+    <div>
+        <h1></h1>
+        <p></p>
+        <h6></h6>
+    </div>
+    <section>
+        <label for="taskNameInput">Task:</label>
+        <input id="taskNameInput" type="text">
+        <label for="descriptionInput">Description:</label>
+        <input id="descriptionInput" type="text">
+        <button id="createBtn">Create</button>
+    </section>
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Created</th>
+                <th>Completed</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="viewToDo">
+
+        </tbody>
+    </table>
+   
+
+</body>
+</html>
