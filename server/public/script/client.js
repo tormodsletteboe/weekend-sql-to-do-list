@@ -96,7 +96,7 @@ function renderToDosToTable(todosFromTable){
             <td class="cb">
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
-            <td>
+            <td class="cb">
                 <button class="deleteBtn" data-id="${todo.id}">X</button>
             </td>
         </tr>
