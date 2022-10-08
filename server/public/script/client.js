@@ -151,8 +151,27 @@ function onCheckBoxChange(){
 //remove the row of this task from the table as well as from the DB
 function onDeleteBtn(){
     //console.log('ran function: ',arguments.callee.name);
-    let idOfTodo = $(this).data('id');
-    //console.log('delete: ',idOfTodo);
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this task!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            doDeletion($(this));
+        } else {
+          
+        }
+      });
+    
+   
+    
+}
+function doDeletion(thisguy){
+    let idOfTodo = thisguy.data('id');
+    // console.log('delete: ',idOfTodo);
     $.ajax({
         url: '/todo/'+idOfTodo,
         method: 'DELETE'
@@ -162,5 +181,5 @@ function onDeleteBtn(){
     })
     .catch((err)=>{
         //console.log('in ajax DELETE catch',err);
-    })
+    });
 }
