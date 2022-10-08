@@ -1,6 +1,6 @@
 
 h1{
-    color:salmon;
+    color:white;
 }
 div{
     display: flex;
@@ -16,7 +16,7 @@ section{
     
 }
 .completed{
-    color:gray;
+    color:black;
     text-decoration: line-through;
 }
 button{
@@ -27,6 +27,7 @@ button{
 }
 tr:nth-child(even){
     background-color: salmon;
+    background-image: linear-gradient(to left,powderblue , green);
 }
 input{
     margin: 5px;
@@ -38,4 +39,40 @@ table{
 .cb{
     text-align: center;
 }
+body{
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right,powderblue , green);
+}
 
+.waviy {
+    position: relative;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+    font-size: 60px;
+  }
+  .waviy span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: waviy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+    
+  }
+  @keyframes waviy {
+    0%,40%,100% {
+      transform: translateY(0)
+    }
+    20% {
+      transform: translateY(-20px)
+    }
+  }
+  #createBtn{
+    color: white;
+    /* color:white
+     */
+    background-image: linear-gradient(to left,powderblue , green);
+  }
+  label{
+    color: white;
+  }
