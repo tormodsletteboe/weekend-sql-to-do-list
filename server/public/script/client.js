@@ -62,6 +62,20 @@ function createToDos(){
     //console.log('ran function: ',arguments.callee.name);
     let taskIn = $('#taskNameInput').val();
     let descr = $('#descriptionInput').val();
+    //if missing input, shake the box, wait 500ms and remove the shake class, then return to DOM
+    if(taskIn===''){
+        $('#taskNameInput').addClass('error');
+        setTimeout(()=>{$('#taskNameInput').removeClass('error');},500);
+        return;
+        
+    }
+     //if missing input, shake the box, wait 500ms and remove the shake class, then return to DOM
+    if(descr===''){
+        $('#descriptionInput').addClass('error');
+        setTimeout(()=>{$('#descriptionInput').removeClass('error');},500);
+        return;
+    }
+    //create the obj to POST
     let newToDo = {
         task: taskIn,
         description: descr,
@@ -89,15 +103,15 @@ function renderToDosToTable(todosFromTable){
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
-        <tr id="tr${todo.id}" data-checked="${todo.completed}">
-            <td>${todo.task_name}</td>
-            <td>${todo.description}</td>
-            <td>${todo.date_created}</td>
-            <td class="cb">
+        <tr id="tr${todo.id}" data-checked="${todo.completed}" class="shadow-lg p-3 mb-5 rounded">
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.task_name}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.description}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${todo.date_created}</td>
+            <td class="shadow-lg p-3 mb-5 rounded cb">
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
-            <td class="cb">
-                <button class="deleteBtn" data-id="${todo.id}">X</button>
+            <td class="shadow-lg p-3 mb-5 rounded cb">
+                <button class="deleteBtn btn btn-light" data-taskname="${todo.task_name}" data-id="${todo.id}">X</button>
             </td>
         </tr>
     `);
@@ -123,9 +137,9 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
 {
     if(checked){
         
-        return `<input class = "checkboxToDo" type ="checkbox" data-id=${id} checked>`;
+        return `<label class="btn align-middle"><input class = "checkboxToDo" type ="checkbox" data-id=${id} checked></label>`;
     }
-    return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
+    return `<label class="btn align-middle"><input class = "checkboxToDo" type ="checkbox" data-id=${id}></label>`;
 }
 
 //PUT
@@ -148,11 +162,35 @@ function onCheckBoxChange(){
 
 //DELETE
 //onDeleteBtn
-//remove the row of this task from the table as well as from the DB
+//remove the row of this task from the table as well as from the DB, but only if user OKs the sweetalert modal
 function onDeleteBtn(){
     //console.log('ran function: ',arguments.callee.name);
-    let idOfTodo = $(this).data('id');
-    //console.log('delete: ',idOfTodo);
+    let taskname = $(this).data('taskname');
+    //ask the user if they are sure and only delete if they are
+    swal({
+        title: "Are you sure?",
+        text: `Once deleted, you will not be able to recover the task:\n\n${taskname}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            doDeletion($(this));
+        } else {
+          
+        }
+      });
+    
+   
+    
+}
+
+//doDeletion
+//send the delete request to the server
+function doDeletion(thisguy){
+    let idOfTodo = thisguy.data('id');
+    // console.log('delete: ',idOfTodo);
     $.ajax({
         url: '/todo/'+idOfTodo,
         method: 'DELETE'
@@ -162,5 +200,5 @@ function onDeleteBtn(){
     })
     .catch((err)=>{
         //console.log('in ajax DELETE catch',err);
-    })
+    });
 }
