@@ -86,7 +86,7 @@ function renderToDosToTable(todosFromTable){
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
-        <tr>
+        <tr id="${todo.id}">
             <td>${todo.task_name}</td>
             <td>${todo.description}</td>
             <td>${todo.date_created}</td>
@@ -106,7 +106,10 @@ function renderToDosToTable(todosFromTable){
 //returns a string with a checkbox checked or a checkbox not checked
 function getCheckboxWithOrWithOutCheckMark(checked,id)
 {
+    //TODO
     if(checked){
+        console.log('innnnnnnnn');
+        $(id).addClass('makeGreen');
         return `<input class = "checkboxToDo" type ="checkbox" data-id=${id} checked>`;
     }
     return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
