@@ -3,17 +3,18 @@ CREATE TABLE "todos" (
     "id" SERIAL PRIMARY KEY,
     "task_name" VARCHAR(30) NOT NULL,
     "description" VARCHAR(200) NOT NULL,
-    "date_created" TIMESTAMP);
+    "date_created" TEXT,
+    "completed" BOOLEAN);
 
 INSERT INTO "todos"
-    ("task_name", "description", "date_created")
+    ("task_name", "description", "date_created","completed")
 VALUES
-    ('Wash Car','Make sure to use soap','2022-10-07 23:10:11'),
-    ('House inspection','Call Hank first','2022-10-06 23:10:11'),
-    ('Fix hole in wall','its in the bathroom','2022-10-05 23:10:11'),
-    ('Mow lawn','front and back','2022-10-04 23:10:11'),
-    ('rake leafs','use the blower if it works','2022-10-03 23:10:11'),
-    ('Prep bike for winter','change the tires to winter tires','2022-10-02 23:10:11'),
-    ('walk dogs','bring enough poop bags','2022-10-01 23:10:11'),
-    ('make dinner','pizza with goat cheese, not the margaritha','2022-09-29 23:10:11'),
-    ('Paint Door','Decide between green or red','2022-10-07 13:10:11');
+    ('Wash Car','Make sure to use soap',LOCALTIMESTAMP,FALSE),
+    ('House inspection','Call Hank first',LOCALTIMESTAMP,FALSE),
+    ('Fix hole in wall','its in the bathroom',LOCALTIMESTAMP,FALSE),
+    ('Mow lawn','front and back',LOCALTIMESTAMP,FALSE),
+    ('rake leafs','use the blower if it works',LOCALTIMESTAMP,FALSE),
+    ('Prep bike for winter','change the tires to winter tires',LOCALTIMESTAMP,FALSE),
+    ('walk dogs','bring enough poop bags',LOCALTIMESTAMP,FALSE),
+    ('make dinner','pizza with goat cheese, not the margaritha', LOCALTIMESTAMP,FALSE),
+    ('Paint Door','Decide between green or red',LOCALTIMESTAMP,FALSE);

@@ -1,3 +1,5 @@
+
+
 console.log('in client.js');
 $(document).ready(onReady);
 
@@ -24,7 +26,7 @@ function displayDate(){
     console.log('ran function: ',arguments.callee.name);
 
     let date = new Date();
-    $('h1').text(date.getDay());
+    $('h1').text(date.getDate());
     $('h6').text(date.getFullYear());
     //https://stackoverflow.com/questions/1643320/get-month-name-from-date
     //post title is :    It is now possible to do this with the ECMAScript Internationalization API:
@@ -42,7 +44,6 @@ function getToDos(){
     })
     .then((respone)=>{
         renderToDosToTable(respone);
-        console.log('in ajax then',respone);
     })
     .catch((err)=>{
         console.log('in client GET catch',err);
@@ -54,6 +55,23 @@ function getToDos(){
 //go to the DB and POST the new ToDO
 function createToDos(){
     console.log('ran function: ',arguments.callee.name);
+    let taskIn = $('#taskNameInput').val();
+    let descr = $('#descriptionInput').val();
+    let newToDo = {
+        task: taskIn,
+        description: descr,
+    }
+    $.ajax({
+        url: '/todo',
+        method: 'POST',
+        data: newToDo
+    })
+    .then((response)=>{
+        getToDos();
+    })
+    .catch((err)=>{
+        console.log('in ajax POST /todo catch',err);
+    })
 }
 
 
@@ -61,6 +79,9 @@ function createToDos(){
 //called in the GET to render response from server->DB
 function renderToDosToTable(todosFromTable){
     console.log('ran function: ',arguments.callee.name);
+
+    //empty before to make sure no duplicates
+    $('#viewToDo').empty();
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
@@ -68,6 +89,12 @@ function renderToDosToTable(todosFromTable){
             <td>${todo.task_name}</td>
             <td>${todo.description}</td>
             <td>${todo.date_created}</td>
+            <td class="cb">
+               <input type="checkbox">
+            </td>
+            <td>
+                <button>X</button>
+            </td>
         </tr>
     `);
     }

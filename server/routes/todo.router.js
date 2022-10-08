@@ -1,3 +1,6 @@
+console.log('in todo.router.js');
+
+
 const express = require('express');
 const router = express.Router();
 
@@ -19,6 +22,26 @@ router.get('/',(req,res)=>{
     })
 });
 //post
+router.post('/',(req,res)=>{
+    console.log('in router POST');
+
+    let sqlText = `INSERT INTO "todos"
+    ("task_name","description","date_created")
+    VALUES
+    ($1,$2,LOCALTIMESTAMP);`;
+
+    
+    pool.query(sqlText,[req.body.task,req.body.description])
+    .then((dbRes)=>{
+        console.log('in router GET then');
+        res.sendStatus(201);
+    })
+    .catch((err)=>{
+        console.log('in router GET catch',err);
+        res.sendStatus(500);
+    })
+});
+
 //put
 //delete
 

@@ -1,14 +1,36 @@
+
 h1{
     color:salmon;
 }
 div{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 section{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+    
 }
 button{
     margin: 5px;
+}
+#viewToDo{
+    text-align:left;
+}
+tr:nth-child(even){
+    background-color: salmon;
+}
+input{
+    margin: 5px;
+}
+table{
+    margin-top: 30px;
+    width: 100%;
+}
+.cb{
+    text-align: center;
 }
