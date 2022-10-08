@@ -86,7 +86,7 @@ function renderToDosToTable(todosFromTable){
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
-        <tr id="${todo.id}">
+        <tr id="fucker${todo.id}" data-checked="${todo.completed}">
             <td>${todo.task_name}</td>
             <td>${todo.description}</td>
             <td>${todo.date_created}</td>
@@ -99,6 +99,15 @@ function renderToDosToTable(todosFromTable){
         </tr>
     `);
     }
+    for(let todo of todosFromTable){
+        if($('#fucker'+todo.id).data('checked')){
+           
+        }
+        else{
+            $('#fucker'+todo.id).addClass("font-effect-fire");
+        }
+        
+    }
     
 
 }
@@ -106,10 +115,8 @@ function renderToDosToTable(todosFromTable){
 //returns a string with a checkbox checked or a checkbox not checked
 function getCheckboxWithOrWithOutCheckMark(checked,id)
 {
-    //TODO
     if(checked){
-        console.log('innnnnnnnn');
-        $(id).addClass('makeGreen');
+        
         return `<input class = "checkboxToDo" type ="checkbox" data-id=${id} checked>`;
     }
     return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
@@ -117,7 +124,7 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
 //changeTheCheckbox
 //checkbox has changed value update it
 function changeTheCheckbox(){
-    
+    console.log('this raaaaaa');
     $.ajax({
         url: `todo/${$(this).data('id')}`,
         method:'PUT'
