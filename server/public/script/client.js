@@ -1,11 +1,11 @@
 
-
 console.log('in client.js');
 $(document).ready(onReady);
 
 //global variables
 
-
+//onReady
+//do all the setup, display current date, register event listeners, grab current db data
 function onReady(){
     console.log('ran function: ',arguments.callee.name);
     //render current date info
@@ -13,7 +13,8 @@ function onReady(){
 
     //register events listeners
     $('#createBtn').on('click',createToDos);
-    $('#viewToDo').on('click','.checkboxToDo',changeTheCheckbox)
+    $('#viewToDo').on('click','.checkboxToDo',onCheckBoxChange)
+    $('#viewToDo').on('click','.deleteBtn',onDeleteBtn)
 
     //grab DB data
     getToDos();
@@ -35,6 +36,7 @@ function displayDate(){
     
 }
 
+//GET
 //getToDoData
 //go to the DB and GET the current STATE
 function getToDos(){
@@ -52,6 +54,7 @@ function getToDos(){
 
 }
 
+//POST
 //createToDo
 //go to the DB and POST the new ToDO
 function createToDos(){
@@ -86,7 +89,7 @@ function renderToDosToTable(todosFromTable){
     //go through all todos
     for(let todo of todosFromTable){
         $('#viewToDo').append(`
-        <tr id="fucker${todo.id}" data-checked="${todo.completed}">
+        <tr id="tr${todo.id}" data-checked="${todo.completed}">
             <td>${todo.task_name}</td>
             <td>${todo.description}</td>
             <td>${todo.date_created}</td>
@@ -94,17 +97,17 @@ function renderToDosToTable(todosFromTable){
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
             <td>
-                <button>X</button>
+                <button class="deleteBtn" data-id="${todo.id}">X</button>
             </td>
         </tr>
     `);
     }
     for(let todo of todosFromTable){
-        if($('#fucker'+todo.id).data('checked')){
+        if($('#tr'+todo.id).data('checked')){
            
         }
         else{
-            $('#fucker'+todo.id).addClass("font-effect-fire");
+            $('#tr'+todo.id).addClass("font-effect-fire");
         }
         
     }
@@ -121,9 +124,11 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
     }
     return `<input class = "checkboxToDo" type ="checkbox" data-id=${id}>`;
 }
+
+//PUT
 //changeTheCheckbox
-//checkbox has changed value update it
-function changeTheCheckbox(){
+//checkbox has changed value update the db
+function onCheckBoxChange(){
     console.log('this raaaaaa');
     $.ajax({
         url: `todo/${$(this).data('id')}`,
@@ -136,11 +141,23 @@ function changeTheCheckbox(){
         console.log('in ajax PUT catch',err);
     })
 
-    // let checkval = false;
-    // if ($(this).is(":checked"){
-    //     checkval=true;
-    // }
-    // else{
-    //     checkval
-    // }
+}
+
+//DELETE
+//onDeleteBtn
+//remove the row of this task from the table as well as from the DB
+function onDeleteBtn(){
+    console.log('ran function: ',arguments.callee.name);
+    let idOfTodo = $('.deleteBtn').data('id');
+
+    $.ajax({
+        url: '/todos/'+idOfTodo,
+        method: 'DELETE'
+    })
+    .then((response)=>{
+        getToDos();
+    })
+    .catch((err)=>{
+        console.log('in ajax DELETE catch',err);
+    })
 }

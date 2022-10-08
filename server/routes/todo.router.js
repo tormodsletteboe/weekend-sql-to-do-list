@@ -58,5 +58,17 @@ router.put('/:index',(req,res)=>{
 });
 
 //delete
+router.delete('/:index',(req,res)=>{
+    let sqlText = `DELETE "todos"
+                    WHERE "id" = $1;`;
+    pool.query(sqlText,[req.params.index])
+    .then((dbRes)=>{
+        res.sendStatus(200);
+    })
+    .catch((err)=>{
+        console.log('in router DELETE catch',err);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = router;
