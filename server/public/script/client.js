@@ -111,7 +111,7 @@ function renderToDosToTable(todosFromTable){
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
             <td class="shadow-lg p-3 mb-5 rounded cb">
-                <button class="deleteBtn btn btn-light" data-id="${todo.id}">X</button>
+                <button class="deleteBtn btn btn-light" data-taskname="${todo.task_name}" data-id="${todo.id}">X</button>
             </td>
         </tr>
     `);
@@ -165,11 +165,11 @@ function onCheckBoxChange(){
 //remove the row of this task from the table as well as from the DB, but only if user OKs the sweetalert modal
 function onDeleteBtn(){
     //console.log('ran function: ',arguments.callee.name);
-
+    let taskname = $(this).data('taskname');
     //ask the user if they are sure and only delete if they are
     swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this task!",
+        text: `Once deleted, you will not be able to recover the task:\n\n${taskname}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
