@@ -1,4 +1,4 @@
-console.log('in pool.js');
+//console.log('in pool.js');
 
 const pg = require('pg');
 const config = {

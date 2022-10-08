@@ -1,5 +1,5 @@
 
-console.log('in client.js');
+//console.log('in client.js');
 $(document).ready(onReady);
 
 //global variables
@@ -7,7 +7,8 @@ $(document).ready(onReady);
 //onReady
 //do all the setup, display current date, register event listeners, grab current db data
 function onReady(){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
+
     //render current date info
     displayDate();
 
@@ -25,7 +26,7 @@ function onReady(){
 //displayDate
 //display the current day month and year
 function displayDate(){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
 
     let date = new Date();
     $('h1').text(date.getDate());
@@ -40,7 +41,7 @@ function displayDate(){
 //getToDoData
 //go to the DB and GET the current STATE
 function getToDos(){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
     $.ajax({
         url: '/todo',
         method: 'GET'
@@ -49,7 +50,7 @@ function getToDos(){
         renderToDosToTable(respone);
     })
     .catch((err)=>{
-        console.log('in client GET catch',err);
+        //console.log('in client GET catch',err);
     })
 
 }
@@ -58,7 +59,7 @@ function getToDos(){
 //createToDo
 //go to the DB and POST the new ToDO
 function createToDos(){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
     let taskIn = $('#taskNameInput').val();
     let descr = $('#descriptionInput').val();
     let newToDo = {
@@ -74,15 +75,14 @@ function createToDos(){
         getToDos();
     })
     .catch((err)=>{
-        console.log('in ajax POST /todo catch',err);
+        //console.log('in ajax POST /todo catch',err);
     })
 }
-
 
 //renderToDosToTable
 //called in the GET to render response from server->DB
 function renderToDosToTable(todosFromTable){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
 
     //empty before to make sure no duplicates
     $('#viewToDo').empty();
@@ -116,6 +116,7 @@ function renderToDosToTable(todosFromTable){
     
 
 }
+
 //getCheckboxWithOrWithOutCheckMark
 //returns a string with a checkbox checked or a checkbox not checked
 function getCheckboxWithOrWithOutCheckMark(checked,id)
@@ -131,7 +132,7 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
 //changeTheCheckbox
 //checkbox has changed value update the db
 function onCheckBoxChange(){
-    console.log('this raaaaaa');
+   // console.log('this raaaaaa');
     $.ajax({
         url: `todo/${$(this).data('id')}`,
         method:'PUT'
@@ -140,7 +141,7 @@ function onCheckBoxChange(){
         getToDos();
     })
     .catch((err)=>{
-        console.log('in ajax PUT catch',err);
+        //console.log('in ajax PUT catch',err);
     })
 
 }
@@ -149,9 +150,9 @@ function onCheckBoxChange(){
 //onDeleteBtn
 //remove the row of this task from the table as well as from the DB
 function onDeleteBtn(){
-    console.log('ran function: ',arguments.callee.name);
+    //console.log('ran function: ',arguments.callee.name);
     let idOfTodo = $(this).data('id');
-    console.log('delete: ',idOfTodo);
+    //console.log('delete: ',idOfTodo);
     $.ajax({
         url: '/todo/'+idOfTodo,
         method: 'DELETE'
@@ -160,6 +161,6 @@ function onDeleteBtn(){
         getToDos();
     })
     .catch((err)=>{
-        console.log('in ajax DELETE catch',err);
+        //console.log('in ajax DELETE catch',err);
     })
 }
