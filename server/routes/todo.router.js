@@ -59,8 +59,8 @@ router.put('/:index',(req,res)=>{
 
 //delete
 router.delete('/:index',(req,res)=>{
-    let sqlText = `DELETE "todos"
-                    WHERE "id" = $1;`;
+    let sqlText = `DELETE FROM "todos"
+                   WHERE "id" = $1;`;
     pool.query(sqlText,[req.params.index])
     .then((dbRes)=>{
         res.sendStatus(200);

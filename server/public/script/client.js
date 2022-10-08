@@ -102,11 +102,13 @@ function renderToDosToTable(todosFromTable){
         </tr>
     `);
     }
+    //look through recently created tr and see if they are checked, if they are not checked ie not completed, add a fire effect.
     for(let todo of todosFromTable){
         if($('#tr'+todo.id).data('checked')){
-           
+           //do nothing
         }
         else{
+            //not completed add a fire effect
             $('#tr'+todo.id).addClass("font-effect-fire");
         }
         
@@ -148,10 +150,10 @@ function onCheckBoxChange(){
 //remove the row of this task from the table as well as from the DB
 function onDeleteBtn(){
     console.log('ran function: ',arguments.callee.name);
-    let idOfTodo = $('.deleteBtn').data('id');
-
+    let idOfTodo = $(this).data('id');
+    console.log('delete: ',idOfTodo);
     $.ajax({
-        url: '/todos/'+idOfTodo,
+        url: '/todo/'+idOfTodo,
         method: 'DELETE'
     })
     .then((response)=>{
