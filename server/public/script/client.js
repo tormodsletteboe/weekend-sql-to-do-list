@@ -106,7 +106,8 @@ function renderToDosToTable(todosFromTable){
         <tr id="tr${todo.id}" data-checked="${todo.completed}" class="shadow-lg p-3 mb-5 rounded">
             <td class="shadow-lg p-3 mb-5 rounded">${todo.task_name}</td>
             <td class="shadow-lg p-3 mb-5 rounded">${todo.description}</td>
-            <td class="shadow-lg p-3 mb-5 rounded">${todo.date_created}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${formatTimeString(todo.date_created)}</td>
+            <td class="shadow-lg p-3 mb-5 rounded">${formatTimeString(todo.time_done)}</td>
             <td class="shadow-lg p-3 mb-5 rounded cb">
                ${getCheckboxWithOrWithOutCheckMark(todo.completed,todo.id)}
             </td>
@@ -146,7 +147,7 @@ function getCheckboxWithOrWithOutCheckMark(checked,id)
 //changeTheCheckbox
 //checkbox has changed value update the db
 function onCheckBoxChange(){
-   // console.log('this raaaaaa');
+   
     $.ajax({
         url: `todo/${$(this).data('id')}`,
         method:'PUT'
@@ -201,4 +202,18 @@ function doDeletion(thisguy){
     .catch((err)=>{
         //console.log('in ajax DELETE catch',err);
     });
+}
+
+
+//formatTimeString
+//return a human centric time string, ie something humans can understand and read with ease
+function formatTimeString(timeStringIn){
+    //if time is not empty format that string
+    if(timeStringIn!='' && timeStringIn != null){
+        let date = new Date(timeStringIn);
+        let stringToReturn=date.toLocaleString();
+        return stringToReturn;
+    }
+    //time was empty just return empty
+    return '';
 }
