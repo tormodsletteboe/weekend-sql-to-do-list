@@ -57,11 +57,13 @@ function getToDos(){
 
 //POST
 //createToDo
-//go to the DB and POST the new ToDO
+//test user input, if good to the DB and POST the new ToDO
 function createToDos(){
     //console.log('ran function: ',arguments.callee.name);
     let taskIn = $('#taskNameInput').val();
     let descr = $('#descriptionInput').val();
+
+    //test input start, could move this to a function
     //if missing input, shake the box, wait 500ms and remove the shake class, then return to DOM
     if(taskIn===''){
         $('#taskNameInput').addClass('error');
@@ -75,6 +77,20 @@ function createToDos(){
         setTimeout(()=>{$('#descriptionInput').removeClass('error');},500);
         return;
     }
+    //if description is to long, ie DB expects no longer than 50 char
+    if(descr.length>50)
+    {
+        alert('Description can only be 50 characters long');
+        return;
+    }
+     //if task name is to long, ie DB expects no longer than 20 char
+    if(taskIn.length>20)
+    {
+        alert('Task name can only be 20 characters long');
+        return;
+    }
+    //test input end, could move this to a function
+
     //create the obj to POST
     let newToDo = {
         task: taskIn,
