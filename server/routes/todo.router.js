@@ -29,15 +29,23 @@ router.post('/',(req,res)=>{
     ("task_name","description","date_created","time_done","completed")
     VALUES
     ($1,$2,LOCALTIMESTAMP,NULL,FALSE);`;
-
-    
-    pool.query(sqlText,[req.body.task,req.body.description])
-    .then((dbRes)=>{
-        res.sendStatus(201);
-    })
-    .catch((err)=>{
+    //req.body.task='';
+    if(req.body.task ===''|| req.body.description===''){
+        //if bad input server side validation
+        //console.log('this ran nnnnnnnn');
         res.sendStatus(500);
-    })
+    }
+    else{
+        //input is good
+        pool.query(sqlText,[req.body.task,req.body.description])
+        .then((dbRes)=>{
+            res.sendStatus(201);
+        })
+        .catch((err)=>{
+            res.sendStatus(500);
+        })
+    }
+    
 });
 
 //put
