@@ -3,7 +3,7 @@
 const pg = require('pg');
 const config = {
     database: 'weekend-to-do-app',
-    host: 'localhost',
+    host: 'ldatabase-1.chqe8mxlv7xb.us-east-2.rds.amazonaws.com',
     port: 5432
 };
 
