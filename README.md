@@ -11,7 +11,7 @@
 
 _Duration: 2 Day Sprint_
 
-The ToDO:Now!! app helps anyone stay on top of their tasks. Simply click Create after filling out Task and Description. If Task name or description is not filled out, no task will be created and the missing input box will shake. Tasks can be deleted by clicking the X in the task row. To extinguish a burning task simply click the corresponding checkbox when a task has been completed. Task will then be extinguished and a line willl go through them and a time stamp will be added to the Time Done column. Remaining non completed tasks will stay on fire.
+The ToDO:Now!! app helps anyone stay on top of their tasks. Simply click Create after filling out Task and Description. If Task name or description is not filled out, no task will be created and the missing input box will shake. Tasks can be deleted by clicking the X in the task row. An Are you sure box will pop up to make sure you want to delete task. To extinguish a burning task simply click the corresponding checkbox when a task has been completed. Task will then be extinguished and a line willl go through them and a time stamp will be added to the Time Done column. Remaining non completed tasks will stay on fire.
 
 
 ## Screen Shot
@@ -66,7 +66,7 @@ Link to software that is required to develop this website.
 5. After completing a task, click on the corresponding checkbox. 
     - Task text will change to black and with a line through the text.
     - A time stamp will be added to the Time Done column.
-6. To remove a task simply click X button of the corresponding task. A are you sure box will open. Click anywhere to cancel or OK to delete it.
+6. To remove a task simply click X button of the corresponding task. An are you sure box will open. Click anywhere to cancel or OK to delete it.
 
 
 
