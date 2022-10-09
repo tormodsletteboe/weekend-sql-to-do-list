@@ -11,7 +11,7 @@
 
 _Duration: 2 Day Sprint_
 
-The ToDO:Now!! app helps anyone stay on top of their tasks. Simply click Create after filling out Task and Description. Tasks can be deleted by clicking the X in the task row. To extinguish a burning task simply click the corresponding checkbox when a task has been completed. Task will then be extinguished and a line willl go through them, aswell as be moved down towards the bottom of table with other completed tasks. Remaining non completed tasks will stay toward the top of the table where they remain on fire.
+The ToDO:Now!! app helps anyone stay on top of their tasks. Simply click Create after filling out Task and Description. If Task name or description is not filled out, no task will be created and the missing input box will shake. Tasks can be deleted by clicking the X in the task row. To extinguish a burning task simply click the corresponding checkbox when a task has been completed. Task will then be extinguished and a line willl go through them and a time stamp will be added to the Time Done column. Remaining non completed tasks will stay on fire.
 
 
 ## Screen Shot
@@ -19,8 +19,11 @@ The ToDO:Now!! app helps anyone stay on top of their tasks. Simply click Create 
 ![Screenshot](images/notaskCompleted.jpg)
 No task completed.
 
-![Screenshot](images/sometaskCompleted.jpg)
+![Screenshot](images/someTaskCompleted.jpg)
 Some tasks completed.
+
+![Screenshot](images/areYouSure.jpg)
+Are you sure you want to delete the task.
 
 
 ### Prerequisites
@@ -59,11 +62,11 @@ Link to software that is required to develop this website.
 2. Fill out Description. Can at most be 200 characters.
 3. Click Create.
 4. An uncompleted task will be added to the table, and its text will be on fire.
-    -Uncompleted task will stay on fire and remain towards the top of the table.
+    -Uncompleted task will stay on fire.
 5. After completing a task, click on the corresponding checkbox. 
     - Task text will change to black and with a line through the text.
-    - The task will also be grouped towards the bottom of the table with other completed tasks.
-6. To remove a task simply click X button of the corresponding task. Task is no more!!
+    - A time stamp will be added to the Time Done column.
+6. To remove a task simply click X button of the corresponding task. A are you sure box will open. Click anywhere to cancel or OK to delete it.
 
 
 
