@@ -19,3 +19,9 @@ VALUES
     ('walk dogs','bring enough poop bags',LOCALTIMESTAMP,NULL,FALSE),
     ('make dinner','pizza with goat cheese, not the margaritha', LOCALTIMESTAMP,NULL,FALSE),
     ('Paint Door','Decide between green or red',LOCALTIMESTAMP,NULL,FALSE);
+
+    -- SELECT * FROM "todos" ORDER BY "completed", "id" LIMIT 100;
+
+    -- UPDATE "todos" SET "completed" = true WHERE "id"=2;
+
+    -- DELETE FROM "todo" WHERE "id"=2;
